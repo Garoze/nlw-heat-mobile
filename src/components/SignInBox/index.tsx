@@ -1,12 +1,16 @@
 import React from 'react';
 import { View } from 'react-native';
-import { COLORS } from '../../theme';
+
+import { useAuth } from '../../hooks/AuthHook';
 
 import { Button } from '../Button';
 
+import { COLORS } from '../../theme';
 import { styles } from './styles';
 
 export const SignInBox = () => {
+  const { signIn, isSigningIn } = useAuth();
+
   return (
     <View style={styles.container}>
       <Button
@@ -14,6 +18,8 @@ export const SignInBox = () => {
         title="ENTRAR COM O GITHUB"
         color={COLORS.BLACK_PRIMARY}
         backgroundColor={COLORS.YELLOW}
+        onPress={signIn}
+        isLoading={isSigningIn}
       />
     </View>
   );
